@@ -1,0 +1,12 @@
+# Pastas do Visual Studio
+.vs/
+bin/
+obj/
+
+# Arquivos de banco de dados
+*.db
+*.db-shm
+*.db-wal
+
+# Pastas de dependências
+node_modules/

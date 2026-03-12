@@ -1,0 +1,11 @@
+claude
+
+! npx neonctl@latest --force-auth init --agent claude
+
+cuesor 
+
+Run this command to set up Neon tooling: npx neonctl@latest --force-auth init --agent cursor
+
+copilot
+
+! npx neonctl@latest --force-auth init --agent copilot

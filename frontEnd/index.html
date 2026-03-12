@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz de Eisenhower Interativa</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">
+            <h2>Matriz de Eisenhower</h2>
+        </div>
+        <div class="user-profile">
+            <svg class="user-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <a href="pages/login.html"><span class="user-name">Meu
+                    Perfil</span></a>
+            <button id="logout-btn" class="logout-btn">Sair</button>
+        </div>
+        
+    </header>
+    <div class="matrix-container">
+        <header class="app-header">
+            <h2>Organize seu dia de forma eficiente</h2>
+            <button id="theme-toggle">🌙 Modo Escuro</button>
+        </header>
+        <div class="eisenhower-matrix">
+            <div class="quadrant q1">
+                <h3>1. Fazer Agora</h3>
+                <p class="subtitle">Urgente e Importante</p>
+                <div class="input-group">
+                    <input type="text" placeholder="Adicionar nova tarefa..."
+                        class="task-input">
+                    <button type="button" class="add-btn">+</button>
+                </div>
+                <ul class="task-list">
+                </ul>
+            </div>
+            <div class="quadrant q2">
+                <h3>2. Agendar</h3>
+                <p class="subtitle">Importante, mas Não Urgente</p>
+                <div class="input-group">
+                    <input type="text" placeholder="Adicionar nova tarefa..."
+                        class="task-input">
+                    <button type="button" class="add-btn">+</button>
+                </div>
+                <ul class="task-list"></ul>
+            </div>
+            <div class="quadrant q3">
+                <h3>3. Delegar</h3>
+                <p class="subtitle">Urgente, mas Não Importante</p>
+                <div class="input-group">
+                    <input type="text" placeholder="Adicionar nova tarefa..."
+                        class="task-input">
+                    <button type="button" class="add-btn">+</button>
+                </div>
+                <ul class="task-list"></ul>
+            </div>
+            <div class="quadrant q4">
+                <h3>4. Eliminar</h3>
+                <p class="subtitle">Não Urgente e Não Importante</p>
+                <div class="input-group">
+                    <input type="text" placeholder="Adicionar nova tarefa..."
+                        class="task-input">
+                    <button type="button" class="add-btn">+</button>
+                </div>
+                <ul class="task-list"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+    <script type="module" src="js/controller/controller.js"></script>
+</body>
+</html>
+
+

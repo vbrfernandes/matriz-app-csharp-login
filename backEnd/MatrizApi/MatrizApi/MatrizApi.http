@@ -1,0 +1,6 @@
+@MatrizApi_HostAddress = http://localhost:5100
+
+GET {{MatrizApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

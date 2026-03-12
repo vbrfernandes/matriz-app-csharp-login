@@ -1,0 +1,476 @@
+/* =========================================
+   Variáveis do Tema Claro (Padrão)
+   ========================================= */
+:root {
+    --bg-main: #f4f7f6;
+    --text-main: #333333;
+    --text-muted: #7f8c8d;
+    --bg-quadrant: #ffffff;
+    --bg-task: rgba(255, 255, 255, 0.9);
+    --task-border: rgba(0, 0, 0, 0.1);
+    --input-bg: #f9f9f9;
+    --btn-hover: #e0e0e0;
+    --scrollbar-thumb: #bdc3c7;
+    
+    /* Cores dos Quadrantes */
+    --q1-color: #4caf50; /* Fazer Agora */
+    --q1-bg: #e8f5e9;
+    --q2-color: #2196f3; /* Agendar */
+    --q2-bg: #e3f2fd;
+    --q3-color: #ff9800; /* Delegar */
+    --q3-bg: #fff3e0;
+    --q4-color: #f44336; /* Eliminar */
+    --q4-bg: #ffebee;
+}
+
+/* =========================================
+   Variáveis do Tema Escuro
+   ========================================= */
+body.dark-mode {
+    --bg-main: #121212;
+    --text-main: #e0e0e0;
+    --text-muted: #aaaaaa;
+    --bg-quadrant: #1e1e1e;
+    --bg-task: #2c2c2c;
+    --task-border: #444444;
+    --input-bg: #333333;
+    --btn-hover: #444444;
+    --scrollbar-thumb: #555555;
+    
+    /* Cores de Fundo Muted para o Modo Escuro */
+    --q1-bg: rgba(76, 175, 80, 0.1);
+    --q2-bg: rgba(33, 150, 243, 0.1);
+    --q3-bg: rgba(255, 152, 0, 0.1);
+    --q4-bg: rgba(244, 67, 54, 0.1);
+}
+
+/* =========================================
+   Estilos Globais
+   ========================================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 80vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex-direction: column;
+}
+
+/* Estilos Gerais do Header */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333333;
+    letter-spacing: -0.5px;
+}
+
+.logo h2 {
+    margin: 0;
+    font-size: 2.8rem; /* Ainda maior! */
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    
+    /* A mágica do Gradiente começa aqui */
+    background: linear-gradient(45deg, #007bff, #20c997); /* Azul para um Verde água */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Necessário para navegadores mais novos */
+    
+    /* Uma sombrinha quase invisível só para dar destaque */
+    filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.1)); 
+}
+
+/* Área do Usuário */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 25px;
+    transition: background-color 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.user-profile:hover {
+    background-color: #f9f9f9;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Ícone SVG do Usuário */
+.user-icon {
+    width: 22px;
+    height: 22px;
+    color: #333333;
+}
+
+/* Nome do Usuário */
+.user-name {
+    font-size: 0.95rem;
+    color: #333333;
+    font-weight: 600;
+}
+/* Estilo para o botão Sair */
+.logout-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--task-border);
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    margin-left: 10px;
+}
+
+.logout-btn:hover {
+    background: #e74c3c; /* Vermelho suave */
+    color: white;
+    border-color: #e74c3c;
+    transform: translateY(-1px);
+}
+
+
+.matrix-container {
+    width: 100%;
+    max-width: 1000px; /* Um pouco mais largo para acomodar bem o texto */
+}
+
+/* =========================================
+   Cabeçalho
+   ========================================= */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.app-header h2 {
+    font-size: 1.4rem; /* Tamanho proporcional e elegante */
+    font-weight: 700; /* Deixa o texto bem destacado (negrito) */
+    color: #7f9ab5; /* Tom de azul escuro/chumbo parecido com o da imagem */
+    margin: 0;
+    letter-spacing: 0.5px; /* Dá um leve respiro entre as letras */
+}
+
+
+#theme-toggle {
+    background: var(--bg-quadrant);
+    color: var(--text-main);
+    border: 1px solid var(--task-border);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#theme-toggle:hover {
+    background: var(--btn-hover);
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   Grid da Matriz
+   ========================================= */
+.eisenhower-matrix {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* =========================================
+   Página de Login
+   ========================================= */
+
+.login-container {
+    width: 100%;
+    max-width: 400px; /* Mais estreito que a matriz */
+    margin: auto;
+    text-align: center;
+}
+
+.login-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.login-header .subtitle {
+    margin-bottom: 25px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group-vertical {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 5px;
+}
+
+.input-group-vertical label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.input-group-vertical .task-input {
+    width: 100%;
+    box-sizing: border-box; /* Garante que o padding não quebre a largura */
+    padding: 12px;
+}
+
+.login-btn {
+    background-color: var(--q2-color); /* Usa o azul do seu quadrante 2 */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.login-btn:hover {
+    background-color: #1976d2; /* Um azul um pouco mais escuro */
+}
+
+.login-btn:active {
+    transform: scale(0.98);
+}
+
+.login-footer {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--task-border);
+    padding-top: 15px;
+}
+
+.login-footer a {
+    color: var(--q2-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: text-decoration 0.2s;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+.register-text {
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+
+/* Responsividade Básica para Celulares */
+@media (max-width: 600px) {
+    .main-nav {
+        display: none; /* Esconde os links centrais em telas pequenas */
+    }
+    
+    .site-header {
+        padding: 15px 20px;
+    }
+    
+    .user-name {
+        display: none; /* Deixa apenas o ícone no celular para economizar espaço */
+    }
+}
+/* Responsividade para Celulares */
+@media (max-width: 768px) {
+    .eisenhower-matrix {
+        grid-template-columns: 1fr; /* Muda para 1 coluna em telas menores */
+    }
+}
+
+/* =========================================
+   Quadrantes
+   ========================================= */
+.quadrant {
+    background-color: var(--bg-quadrant);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease;
+}
+
+.quadrant h3 { 
+    margin: 0 0 5px 0; 
+    font-size: 1.3rem; 
+}
+
+.subtitle { 
+    font-size: 0.85rem; 
+    color: var(--text-muted); 
+    margin: 0 0 15px 0; 
+    font-weight: 600; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Cores específicas dos Quadrantes */
+.q1 { background-color: var(--q1-bg); border-top: 6px solid var(--q1-color); }
+.q1 .task-list li { border-left-color: var(--q1-color); }
+
+.q2 { background-color: var(--q2-bg); border-top: 6px solid var(--q2-color); }
+.q2 .task-list li { border-left-color: var(--q2-color); }
+
+.q3 { background-color: var(--q3-bg); border-top: 6px solid var(--q3-color); }
+.q3 .task-list li { border-left-color: var(--q3-color); }
+
+.q4 { background-color: var(--q4-bg); border-top: 6px solid var(--q4-color); }
+.q4 .task-list li { border-left-color: var(--q4-color); } /* Fechamento que estava faltando */
+
+/* =========================================
+   Inputs e Botões
+   ========================================= */
+.input-group {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 8px;
+}
+
+.task-input {
+    flex-grow: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--task-border);
+    border-radius: 6px;
+    background: var(--input-bg);
+    color: var(--text-main);
+    outline: none;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
+}
+
+.task-input:focus {
+    border-color: var(--text-muted);
+}
+
+.add-btn {
+    background: var(--task-border);
+    color: var(--text-main);
+    border: none;
+    border-radius: 6px;
+    padding: 0 15px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.add-btn:hover { 
+    background: var(--btn-hover); 
+}
+
+.add-btn:active {
+    transform: scale(0.95); /* Efeito de "clique" */
+}
+
+/* =========================================
+   Lista de Tarefas
+   ========================================= */
+.task-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    max-height: 220px;
+    padding-right: 5px; /* Espaço para o scrollbar não colar no texto */
+}
+
+/* Customização da Barra de Rolagem */
+.task-list::-webkit-scrollbar {
+    width: 6px;
+}
+.task-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.task-list::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 10px;
+}
+
+.task-list li {
+    background: var(--bg-task);
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    border-left: 4px solid transparent;
+    border-bottom: 1px solid var(--task-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    transition: transform 0.2s ease;
+}
+
+.task-list li:hover {
+    transform: translateX(2px); /* Pequeno destaque ao passar o mouse */
+}
+
+/* Texto Editável */
+.task-text {
+    flex-grow: 1;
+    cursor: text;
+    outline: none;
+    padding: 2px 5px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    word-break: break-word; /* Evita que palavras longas quebrem o layout */
+    margin-right: 10px;
+}
+
+.task-text:focus { 
+    background: var(--input-bg); 
+    border-bottom: 1px dashed var(--text-muted); 
+}
+
+/* Botão de Excluir */
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover { 
+    background: rgba(231, 76, 60, 0.1); 
+}
