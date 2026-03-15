@@ -6,7 +6,14 @@ export default class MatrixModel {
   }
 
   carregarTarefasDoServidor() {
-    fetch("https://localhost:7091/api/Tarefa")
+    // 1. Pegamos o ID de quem está logado no localStorage
+    const usuarioId = localStorage.getItem("usuarioId");
+
+    // Se não tiver ninguém logado, para por aqui e nem tenta buscar
+    if (!usuarioId) return;
+
+    // 2. Apontamos para a nova rota no C# passando o ID na URL
+    fetch(`https://localhost:7091/api/Tarefa/usuario/${usuarioId}`)
       .then((resposta) => resposta.json())
       .then((dadosDoServidor) => {
         // Agora o C# e o JS falam exatamente a mesma língua!
@@ -31,16 +38,21 @@ export default class MatrixModel {
   }
 
   addTask(texto, quadrante) {
+    // 1. Pegamos o ID do dono da tarefa no localStorage
+    const usuarioId = localStorage.getItem("usuarioId");
+
     const novaTarefa = {
       id: Date.now(),
       texto: texto,
       quadrante: quadrante,
+      usuarioId: parseInt(usuarioId), // Vincula a tarefa ao usuário no Front
     };
     this.tarefas.push(novaTarefa);
 
     const tarefaParaOBackend = {
       texto: texto,
       quadrante: quadrante,
+      usuarioId: parseInt(usuarioId), // Avisa o C# de quem é essa tarefa!
     };
 
     fetch("https://localhost:7091/api/Tarefa", {
@@ -54,11 +66,8 @@ export default class MatrixModel {
         if (tarefaNaLista) {
           tarefaNaLista.id = dadosSalvos.id;
 
-          this.onTodoListChanged(this.tarefas); // Manda a tela redesenhar com os botões corretos!
-      
-
           if (this.onTodoListChanged) {
-            this.onTodoListChanged(this.tarefas);
+            this.onTodoListChanged(this.tarefas); // Manda a tela redesenhar com os botões corretos!
           }
         }
         console.log("🎉 ID atualizado para o oficial do C#:", dadosSalvos.id);
@@ -109,4 +118,3 @@ export default class MatrixModel {
       .catch((erro) => console.error("Ops! Erro ao editar no C#:", erro));
   }
 }
-

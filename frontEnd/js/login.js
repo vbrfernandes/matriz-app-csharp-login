@@ -13,9 +13,12 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
 
         if (resposta.ok) {
             const dados = await resposta.json();
-            // Salva o nome para usar na index.html
-            localStorage.setItem('usuarioLogado', dados.nome);
-            window.location.href = "../index.html";
+            
+            // Salvamos o nome e agora também o ID do usuário!
+            localStorage.setItem('usuarioNome', dados.nome);
+            localStorage.setItem('usuarioId', dados.id); 
+            
+            window.location.href = "./pages/home.html";
         } else {
             alert("E-mail ou senha incorretos.");
         }

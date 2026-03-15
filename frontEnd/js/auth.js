@@ -1,6 +1,6 @@
 // Este script serve para gerenciar a interface baseada no login
 document.addEventListener('DOMContentLoaded', () => {
-    const nomeDoUsuario = localStorage.getItem('usuarioLogado');
+    const nomeDoUsuario = localStorage.getItem('usuarioNome');
     const spanNome = document.querySelector('.user-name');
 
     if (nomeDoUsuario && spanNome) {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const logoutBtn = document.createElement('span');
         logoutBtn.onclick = () => {
             localStorage.removeItem('usuarioLogado');
-            window.location.href = 'pages/login.html';
+            window.location.href = 'index.html';
         };
         spanNome.parentElement.appendChild(logoutBtn);
     }

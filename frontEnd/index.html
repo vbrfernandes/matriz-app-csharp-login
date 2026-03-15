@@ -3,79 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matriz de Eisenhower Interativa</title>
+    <title>Login - Matriz de Eisenhower</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="logo">
-            <h2>Matriz de Eisenhower</h2>
+    <div class="logo">
+        <h2>Matriz de Eisenhower</h2>
+    </div>
+    <div class="login-container quadrant">
+        <div class="login-header">
+            <h2>Bem-vindo de volta</h2>
+            <p class="subtitle">Faça login para gerenciar suas tarefas</p>
         </div>
-        <div class="user-profile">
-            <svg class="user-icon" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            <a href="pages/login.html"><span class="user-name">Meu
-                    Perfil</span></a>
-            <button id="logout-btn" class="logout-btn">Sair</button>
-        </div>
-        
-    </header>
-    <div class="matrix-container">
-        <header class="app-header">
-            <h2>Organize seu dia de forma eficiente</h2>
-            <button id="theme-toggle">🌙 Modo Escuro</button>
-        </header>
-        <div class="eisenhower-matrix">
-            <div class="quadrant q1">
-                <h3>1. Fazer Agora</h3>
-                <p class="subtitle">Urgente e Importante</p>
-                <div class="input-group">
-                    <input type="text" placeholder="Adicionar nova tarefa..."
-                        class="task-input">
-                    <button type="button" class="add-btn">+</button>
-                </div>
-                <ul class="task-list">
-                </ul>
+        <form class="login-form" action="home.html">
+            <div class="input-group-vertical">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" class="task-input"
+                    placeholder="seu@email.com" required>
             </div>
-            <div class="quadrant q2">
-                <h3>2. Agendar</h3>
-                <p class="subtitle">Importante, mas Não Urgente</p>
-                <div class="input-group">
-                    <input type="text" placeholder="Adicionar nova tarefa..."
-                        class="task-input">
-                    <button type="button" class="add-btn">+</button>
-                </div>
-                <ul class="task-list"></ul>
+            <div class="input-group-vertical">
+                <label for="password">Senha</label>
+                <input type="password" id="password" class="task-input"
+                    placeholder="••••••••" required>
             </div>
-            <div class="quadrant q3">
-                <h3>3. Delegar</h3>
-                <p class="subtitle">Urgente, mas Não Importante</p>
-                <div class="input-group">
-                    <input type="text" placeholder="Adicionar nova tarefa..."
-                        class="task-input">
-                    <button type="button" class="add-btn">+</button>
-                </div>
-                <ul class="task-list"></ul>
-            </div>
-            <div class="quadrant q4">
-                <h3>4. Eliminar</h3>
-                <p class="subtitle">Não Urgente e Não Importante</p>
-                <div class="input-group">
-                    <input type="text" placeholder="Adicionar nova tarefa..."
-                        class="task-input">
-                    <button type="button" class="add-btn">+</button>
-                </div>
-                <ul class="task-list"></ul>
-            </div>
+            <button type="submit" class="login-btn">Entrar</button>
+        </form>
+        <div class="login-footer">
+            <a href="pages/esqueceuSenha.html" class="forgot-link">Esqueceu a senha?</a>
+            <p class="register-text">Não tem uma conta? <a
+                    href="pages/register.html">Registre-se</a></p>
         </div>
     </div>
-    <script src="js/auth.js"></script>
-    <script type="module" src="js/controller/controller.js"></script>
+
+    <script src="js/login.js"></script>
 </body>
 </html>
-
-

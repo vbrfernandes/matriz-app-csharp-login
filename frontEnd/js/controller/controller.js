@@ -60,7 +60,7 @@ class MatrixController {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
             localStorage.removeItem('usuarioLogado');
-            window.location.href = 'pages/login.html';
+            window.location.href = '../index.html';
         });
     }
   }

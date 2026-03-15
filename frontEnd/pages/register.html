@@ -7,47 +7,55 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-
     <div class="logo">
-        <a href="../index.html"><h2>Matriz de Eisenhower</h2></a>
+        <h2>Matriz de Eisenhower</h2>
     </div>
-
-    
     <div class="login-container quadrant">
         <div class="login-header">
             <h2>Criar Conta</h2>
             <p class="subtitle">Junte-se a nós e organize seu dia</p>
         </div>
-
-        <form class="login-form" action="login.html">
+        <form class="login-form" action="../index.html"
+            onsubmit="return false;">
             <div class="input-group-vertical">
                 <label for="name">Nome Completo</label>
-                <input type="text" id="name" class="task-input" placeholder="Seu nome" required>
+                <input type="text" id="name" class="task-input"
+                    placeholder="Seu nome" required>
             </div>
-
             <div class="input-group-vertical">
                 <label for="email">E-mail</label>
-                <input type="email" id="email" class="task-input" placeholder="seu@email.com" required>
+                <input type="email" id="email" class="task-input"
+                    placeholder="seu@email.com" required>
             </div>
-
             <div class="input-group-vertical">
                 <label for="password">Senha</label>
-                <input type="password" id="password" class="task-input" placeholder="Crie uma senha forte" required>
+                <input type="password" id="password" class="task-input"
+                    placeholder="Crie uma senha forte" required>
+                <small id="password-hint"
+                    style="color: #666; font-size: 0.8em;">
+                    Mínimo 8 caracteres, incluindo letras, números e símbolos.
+                </small>
+                <span id="password-error"
+                    style="display: none; color: #d93025; font-size: 14px; margin-top: 5px; display: block;"></span>
             </div>
-
             <div class="input-group-vertical">
                 <label for="confirm-password">Confirmar Senha</label>
-                <input type="password" id="confirm-password" class="task-input" placeholder="Repita a senha" required>
+                <input type="password" id="confirm-password" class="task-input"
+                    placeholder="Repita a senha" required>
+                <span id="match-error"
+                    style="display: none; color: #d93025; font-size: 14px; margin-top: 5px;">
+                    As senhas não coincidem. Tente novamente.
+                </span>
             </div>
-
-            <button type="submit" class="login-btn">Registrar</button>
+            <button ttype="button" id="btn-registrar"
+                class="login-btn">Registrar</button>
         </form>
-
         <div class="login-footer">
-            <p class="register-text">Já tem uma conta? <a href="login.html">Faça login</a></p>
+            <p class="register-text">Já tem uma conta? <a
+                    href="../index.html">Faça login</a></p>
         </div>
     </div>
-
+    <div id="toast">Conta criada com sucesso! Redirecionando...</div>
     <script src="../js/register.js"></script>
 </body>
 </html>

@@ -291,6 +291,38 @@ body {
     margin-top: 10px;
 }
 
+/* Estilo da caixinha de sucesso (Toast) */
+#toast {
+    visibility: hidden; /* Fica escondida por padrão */
+    min-width: 250px;
+    background-color: #28a745; /* Verde sucesso */
+    color: #fff; /* Texto branco */
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed; /* Fixa na tela */
+    z-index: 1000;
+    left: 50%; /* Centraliza */
+    bottom: 30px; /* Distância do pé da página */
+    transform: translateX(-50%); /* Ajuste fino para ficar bem no meio */
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+/* Classe que vamos adicionar via JavaScript para ela aparecer */
+#toast.mostrar {
+    visibility: visible;
+    opacity: 1;
+}
+
+.input-error {
+  border: 2px solid #d93025;
+  outline: none;
+}
+
 /* Responsividade Básica para Celulares */
 @media (max-width: 600px) {
     .main-nav {

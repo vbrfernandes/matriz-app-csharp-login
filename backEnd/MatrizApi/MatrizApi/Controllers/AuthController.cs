@@ -27,10 +27,8 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login([FromBody] Usuario loginInfo)
     {
-        // 1. Procura o usuário apenas pelo E-mail primeiro
         var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == loginInfo.Email);
 
-        // 2. AQUI A MÁGICA: O BCrypt verifica se a senha digitada bate com a criptografada
         if (usuario == null || !BCrypt.Net.BCrypt.Verify(loginInfo.Senha, usuario.Senha))
         {
             return Unauthorized("E-mail ou senha incorretos.");

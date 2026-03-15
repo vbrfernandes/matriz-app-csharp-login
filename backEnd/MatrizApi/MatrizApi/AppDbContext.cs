@@ -10,7 +10,6 @@ namespace MatrizApi
         {
         }
 
-        // Aqui nós dizemos: "Crie uma tabela chamada 'Tarefas' baseada na classe 'Tarefa'"
         public DbSet<Tarefa> Tarefas { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
     }
