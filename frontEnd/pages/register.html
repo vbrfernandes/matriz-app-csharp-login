@@ -16,7 +16,7 @@
             <p class="subtitle">Junte-se a nós e organize seu dia</p>
         </div>
         <form class="login-form" action="../index.html"
-            onsubmit="return false;">
+            onsubmit="return false;" id="formRegister">
             <div class="input-group-vertical">
                 <label for="name">Nome Completo</label>
                 <input type="text" id="name" class="task-input"
@@ -47,7 +47,7 @@
                     As senhas não coincidem. Tente novamente.
                 </span>
             </div>
-            <button ttype="button" id="btn-registrar"
+            <button type="submit" id="btn-registrar"
                 class="login-btn">Registrar</button>
         </form>
         <div class="login-footer">
@@ -56,6 +56,7 @@
         </div>
     </div>
     <div id="toast">Conta criada com sucesso! Redirecionando...</div>
-    <script src="../js/register.js"></script>
+
+    <script type="module" src="../js/controller/authController.js"></script>
 </body>
 </html>

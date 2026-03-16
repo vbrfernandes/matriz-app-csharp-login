@@ -1,12 +1,29 @@
-# Pastas do Visual Studio
-.vs/
+# ==============================
+# Dependências Web / Front-end
+# ==============================
+node_modules/
+dist/
+build/
+
+# ==============================
+# Arquivos do C# / .NET 
+# ==============================
 bin/
 obj/
+appsettings.Development.json
+appsettings.*.json
+*.user
+*.userprefs
 
-# Arquivos de banco de dados
-*.db
-*.db-shm
-*.db-wal
+# ==============================
+# Arquivos de IDEs e Editores
+# ==============================
+.vscode/
+.vs/
+.idea/
 
-# Pastas de dependências
-node_modules/
+# ==============================
+# Arquivos do Sistema Operacional
+# ==============================
+.DS_Store
+Thumbs.db

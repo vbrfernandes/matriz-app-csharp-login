@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Senha - Matriz de Eisenhower</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="logo">
+        <h2>Matriz de Eisenhower</h2>
+    </div>
+    <div class="login-container quadrant">
+        <div class="login-header">
+            <h2>Criar Nova Senha</h2>
+            <p class="subtitle">Digite sua nova senha de acesso</p>
+        </div>
+        <form class="login-form" id="formRedefinir">
+            <div class="input-group-vertical">
+                <label for="novaSenha">Nova Senha</label>
+                <input type="password" id="novaSenha" class="task-input"
+                    placeholder="Mínimo 6 caracteres" required>
+            </div>
+            <div class="input-group-vertical" style="margin-top: 15px;">
+                <label for="confirmaSenha">Confirmar Nova Senha</label>
+                <input type="password" id="confirmaSenha" class="task-input"
+                    placeholder="Repita a senha" required>
+            </div>
+            <button type="submit" class="login-btn"
+                style="margin-top: 20px;">Salvar Nova Senha</button>
+        </form>
+    </div>
+    <div id="toast" class="toast">"Senha alterada com sucesso! Redirecionando
+        para o login..."</div>
+    <script type="module" src="../js/controller/authController.js"></script>
+</body>
+</html>

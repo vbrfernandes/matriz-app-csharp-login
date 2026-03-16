@@ -15,7 +15,7 @@
             <h2>Recuperar Senha</h2>
             <p class="subtitle">Enviaremos um link para redefinir sua senha</p>
         </div>
-        <form class="login-form" action="index.html">
+        <form class="login-form" id="formEsqueceuSenha">
             <div class="input-group-vertical">
                 <label for="email">E-mail cadastrado</label>
                 <input type="email" id="email" class="task-input"
@@ -29,5 +29,8 @@
                     href="../index.html">Voltar para o login</a></p>
         </div>
     </div>
+    <div id="toast" class="toast">Se o e-mail existir na nossa base, um link foi enviado!</div>
+    <!-- <script src="../js/esqueceuSenha.js" type="module"></script> -->
+     <script type="module" src="../js/controller/authController.js"></script>
 </body>
 </html>

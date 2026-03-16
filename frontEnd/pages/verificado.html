@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="min-height: 100vh; margin: 0; padding: 20px;">
+    <div class="login-container">
+        <header class="login-header">
+            <div class="logo">
+                <h1>Matriz</h1>
+            </div>
+            <h2 id="status-title" aria-live="polite">Verificando sua conta...
+            </h2>
+            <p class="subtitle" id="status-desc">Aguarde um instante enquanto
+                validamos seu token.</p>
+        </header>
+        <main class="quadrant q2 verification-box">
+            <div id="loading-spinner" class="spinner"></div>
+            <p id="message-text" class="status-message"></p>
+            <button id="btn-action" class="login-btn full-width hidden">
+                <a href="../index.html">Ir para o Login</a>
+            </button>
+        </main>
+        <footer class="login-footer">
+            <p class="register-text">Não recebeu o e-mail? <a href="#"
+                    id="link-reenviar">Reenviar código</a></p>
+        </footer>
+    </div>
+    <!-- <script src="../js/view/verificado.js"></script> -->
+
+    <script type="module" src="../js/controller/authController.js"></script>
+</body>
+</html>
