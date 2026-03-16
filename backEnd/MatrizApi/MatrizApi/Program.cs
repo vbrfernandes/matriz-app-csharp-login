@@ -1,4 +1,3 @@
-
 using MatrizApi;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,24 +7,27 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-builder.Services.AddControllers();
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirTudo", policy =>
     {
-        policy.AllowAnyOrigin()   
-              .AllowAnyHeader()   
-              .AllowAnyMethod(); 
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
-app.UseHttpsRedirection();
 
 app.UseCors("PermitirTudo");
 
+app.UseHttpsRedirection();
+
 app.UseAuthorization();
+
 app.MapControllers();
+
 app.Run();
