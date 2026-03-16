@@ -1,7 +1,7 @@
 // view.js
 export default class MatrixView {
     constructor() {
-        // Buscamos a classe exata que está no HTML
+
         this.quadrantes = document.querySelectorAll('.quadrant'); 
     }
 
@@ -10,7 +10,7 @@ export default class MatrixView {
         li.id = tarefa.id; 
 
         const span = document.createElement('span');
-        span.textContent = tarefa.texto; // textContent é nativo do navegador!
+        span.textContent = tarefa.texto;
         span.classList.add('task-text');
 
         const deleteBtn = document.createElement('button');
@@ -55,7 +55,7 @@ export default class MatrixView {
                 span.removeAttribute('contenteditable'); 
                 
                 const id = parseInt(span.parentElement.id); 
-                const novoTexto = span.textContent.trim(); // textContent é nativo!
+                const novoTexto = span.textContent.trim();
                 
                 if (novoTexto) {
                     handler(id, novoTexto); 

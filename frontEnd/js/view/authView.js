@@ -58,7 +58,7 @@ export default class AuthView {
     
     setTimeout(() => {
       toast.classList.remove("mostrar");
-      toast.className = ""; // limpa as classes após ocultar
+      toast.className = ""; 
     }, duration);
   }
 
@@ -80,7 +80,7 @@ export default class AuthView {
     if (spinner) spinner.style.display = show ? "block" : "none";
   }
 
-  // Método dinâmico para evitar duplicatas de setLoading
+
   setLoadingButton(btnSelector, isLoading, loadingText, defaultText) {
     const btn = document.querySelector(btnSelector);
     if (!btn) return;

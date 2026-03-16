@@ -6,7 +6,7 @@ export default class MatrixModel {
   }
 
   carregarTarefasDoServidor() {
-    // 1. Pegamos o ID de quem está logado no localStorage
+
     const usuarioId = localStorage.getItem("usuarioId");
 
     // Se não tiver ninguém logado, para por aqui e nem tenta buscar
@@ -38,7 +38,7 @@ export default class MatrixModel {
   }
 
   addTask(texto, quadrante) {
-    // 1. Pegamos o ID do dono da tarefa no localStorage
+
     const usuarioId = localStorage.getItem("usuarioId");
 
     const novaTarefa = {

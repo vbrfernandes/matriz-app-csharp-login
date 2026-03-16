@@ -13,7 +13,7 @@ export default class AuthModel {
   }
 
   removerSessao() {
-    localStorage.removeItem("usuarioLogado"); // Mantive igual ao seu original
+    localStorage.removeItem("usuarioLogado"); 
     localStorage.removeItem("usuarioNome");
     localStorage.removeItem("usuarioId");
   }

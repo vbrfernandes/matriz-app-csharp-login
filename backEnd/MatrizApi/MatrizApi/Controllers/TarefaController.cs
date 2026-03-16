@@ -7,10 +7,8 @@ namespace MatrizApi.Controllers
     [ApiController]
     public class TarefaController : ControllerBase
     {
-        // Banco de Dados!
         private readonly AppDbContext _context;
 
-        // O Construtor: Quando o C# cria o Garçom, ele "injeta" o Banco de Dados aqui
         public TarefaController(AppDbContext context)
         {
             _context = context;

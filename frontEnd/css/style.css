@@ -12,14 +12,13 @@
     --btn-hover: #e0e0e0;
     --scrollbar-thumb: #bdc3c7;
     
-    /* Cores dos Quadrantes */
-    --q1-color: #4caf50; /* Fazer Agora */
+    --q1-color: #4caf50;
     --q1-bg: #e8f5e9;
-    --q2-color: #2196f3; /* Agendar */
+    --q2-color: #2196f3;
     --q2-bg: #e3f2fd;
-    --q3-color: #ff9800; /* Delegar */
+    --q3-color: #ff9800;
     --q3-bg: #fff3e0;
-    --q4-color: #f44336; /* Eliminar */
+    --q4-color: #f44336;
     --q4-bg: #ffebee;
 }
 
@@ -37,7 +36,6 @@ body.dark-mode {
     --btn-hover: #444444;
     --scrollbar-thumb: #555555;
     
-    /* Cores de Fundo Muted para o Modo Escuro */
     --q1-bg: rgba(76, 175, 80, 0.1);
     --q2-bg: rgba(33, 150, 243, 0.1);
     --q3-bg: rgba(255, 152, 0, 0.1);
@@ -62,7 +60,6 @@ body {
     flex-direction: column;
 }
 
-/* Estilos Gerais do Header */
 .site-header {
     display: flex;
     justify-content: space-between;
@@ -75,7 +72,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Logo */
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
@@ -85,22 +81,17 @@ body {
 
 .logo h2 {
     margin: 0;
-    font-size: 2.8rem; /* Ainda maior! */
+    font-size: 2.8rem;
     font-weight: 900;
     letter-spacing: -1.5px;
-    
-    /* A mágica do Gradiente começa aqui */
-    background: linear-gradient(45deg, #007bff, #20c997); /* Azul para um Verde água */
+    background: linear-gradient(45deg, #007bff, #20c997);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    color: transparent; /* Necessário para navegadores mais novos */
-    
-    /* Uma sombrinha quase invisível só para dar destaque */
-    filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.1)); 
+    color: transparent;
+    filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.1));
 }
 
-/* Área do Usuário */
 .user-profile {
     display: flex;
     align-items: center;
@@ -117,20 +108,18 @@ body {
     border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Ícone SVG do Usuário */
 .user-icon {
     width: 22px;
     height: 22px;
     color: #333333;
 }
 
-/* Nome do Usuário */
 .user-name {
     font-size: 0.95rem;
     color: #333333;
     font-weight: 600;
 }
-/* Estilo para o botão Sair */
+
 .logout-btn {
     background: transparent;
     color: var(--text-muted);
@@ -145,16 +134,15 @@ body {
 }
 
 .logout-btn:hover {
-    background: #e74c3c; /* Vermelho suave */
+    background: #e74c3c;
     color: white;
     border-color: #e74c3c;
     transform: translateY(-1px);
 }
 
-
 .matrix-container {
     width: 100%;
-    max-width: 1000px; /* Um pouco mais largo para acomodar bem o texto */
+    max-width: 1000px;
 }
 
 /* =========================================
@@ -168,13 +156,12 @@ body {
 }
 
 .app-header h2 {
-    font-size: 1.4rem; /* Tamanho proporcional e elegante */
-    font-weight: 700; /* Deixa o texto bem destacado (negrito) */
-    color: #7f9ab5; /* Tom de azul escuro/chumbo parecido com o da imagem */
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #7f9ab5;
     margin: 0;
-    letter-spacing: 0.5px; /* Dá um leve respiro entre as letras */
+    letter-spacing: 0.5px;
 }
-
 
 #theme-toggle {
     background: var(--bg-quadrant);
@@ -205,10 +192,9 @@ body {
 /* =========================================
    Página de Login
    ========================================= */
-
 .login-container {
     width: 100%;
-    max-width: 400px; /* Mais estreito que a matriz */
+    max-width: 400px;
     margin: auto;
     text-align: center;
 }
@@ -243,12 +229,12 @@ body {
 
 .input-group-vertical .task-input {
     width: 100%;
-    box-sizing: border-box; /* Garante que o padding não quebre a largura */
+    box-sizing: border-box;
     padding: 12px;
 }
 
 .login-btn {
-    background-color: var(--q2-color); /* Usa o azul do seu quadrante 2 */
+    background-color: var(--q2-color);
     color: white;
     border: none;
     border-radius: 6px;
@@ -261,7 +247,7 @@ body {
 }
 
 .login-btn:hover {
-    background-color: #1976d2; /* Um azul um pouco mais escuro */
+    background-color: #1976d2;
 }
 
 .login-btn:active {
@@ -291,20 +277,19 @@ body {
     margin-top: 10px;
 }
 
-/* Estilo da caixinha de sucesso (Toast) */
 #toast {
-    visibility: hidden; /* Fica escondida por padrão */
+    visibility: hidden;
     min-width: 250px;
-    background-color: #28a745; /* Verde sucesso */
-    color: #fff; /* Texto branco */
+    background-color: #28a745;
+    color: #fff;
     text-align: center;
     border-radius: 8px;
     padding: 16px;
-    position: fixed; /* Fixa na tela */
+    position: fixed;
     z-index: 1000;
-    left: 50%; /* Centraliza */
-    bottom: 30px; /* Distância do pé da página */
-    transform: translateX(-50%); /* Ajuste fino para ficar bem no meio */
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
     font-size: 16px;
     font-weight: bold;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
@@ -312,7 +297,6 @@ body {
     transition: opacity 0.5s, visibility 0.5s;
 }
 
-/* Classe que vamos adicionar via JavaScript para ela aparecer */
 #toast.mostrar {
     visibility: visible;
     opacity: 1;
@@ -323,10 +307,9 @@ body {
   outline: none;
 }
 
-/* Responsividade Básica para Celulares */
 @media (max-width: 600px) {
     .main-nav {
-        display: none; /* Esconde os links centrais em telas pequenas */
+        display: none;
     }
     
     .site-header {
@@ -334,13 +317,13 @@ body {
     }
     
     .user-name {
-        display: none; /* Deixa apenas o ícone no celular para economizar espaço */
+        display: none;
     }
 }
-/* Responsividade para Celulares */
+
 @media (max-width: 768px) {
     .eisenhower-matrix {
-        grid-template-columns: 1fr; /* Muda para 1 coluna em telas menores */
+        grid-template-columns: 1fr; 
     }
 }
 
@@ -371,7 +354,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Cores específicas dos Quadrantes */
 .q1 { background-color: var(--q1-bg); border-top: 6px solid var(--q1-color); }
 .q1 .task-list li { border-left-color: var(--q1-color); }
 
@@ -382,7 +364,7 @@ body {
 .q3 .task-list li { border-left-color: var(--q3-color); }
 
 .q4 { background-color: var(--q4-bg); border-top: 6px solid var(--q4-color); }
-.q4 .task-list li { border-left-color: var(--q4-color); } /* Fechamento que estava faltando */
+.q4 .task-list li { border-left-color: var(--q4-color); }
 
 /* =========================================
    Inputs e Botões
@@ -426,7 +408,7 @@ body {
 }
 
 .add-btn:active {
-    transform: scale(0.95); /* Efeito de "clique" */
+    transform: scale(0.95);
 }
 
 /* =========================================
@@ -438,10 +420,9 @@ body {
     margin: 0;
     overflow-y: auto;
     max-height: 220px;
-    padding-right: 5px; /* Espaço para o scrollbar não colar no texto */
+    padding-right: 5px;
 }
 
-/* Customização da Barra de Rolagem */
 .task-list::-webkit-scrollbar {
     width: 6px;
 }
@@ -469,10 +450,9 @@ body {
 }
 
 .task-list li:hover {
-    transform: translateX(2px); /* Pequeno destaque ao passar o mouse */
+    transform: translateX(2px);
 }
 
-/* Texto Editável */
 .task-text {
     flex-grow: 1;
     cursor: text;
@@ -480,7 +460,7 @@ body {
     padding: 2px 5px;
     border-radius: 4px;
     transition: background 0.2s;
-    word-break: break-word; /* Evita que palavras longas quebrem o layout */
+    word-break: break-word;
     margin-right: 10px;
 }
 
@@ -489,7 +469,6 @@ body {
     border-bottom: 1px dashed var(--text-muted); 
 }
 
-/* Botão de Excluir */
 .delete-btn {
     background: transparent;
     border: none;

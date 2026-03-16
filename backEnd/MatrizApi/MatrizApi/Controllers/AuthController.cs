@@ -151,7 +151,6 @@ namespace MatrizApi.Controllers
         [HttpPost("forgot-password")]
         public IActionResult ForgotPassword([FromBody] ForgotPasswordRequest request)
         {
-            // Usando FirstOrDefault síncrono, igual ao resto do seu código
             var user = _context.Usuarios.FirstOrDefault(u => u.Email == request.Email);
 
             if (user == null)
@@ -160,9 +159,8 @@ namespace MatrizApi.Controllers
             user.PasswordResetToken = Guid.NewGuid().ToString();
             user.ResetTokenExpires = DateTime.UtcNow.AddHours(1);
 
-            _context.SaveChanges(); // Síncrono
+            _context.SaveChanges();
 
-            // Aproveitando que você já tem o Mailtrap configurado, vamos enviar o e-mail de verdade!
             EnviarEmailRecuperacao(user.Email, user.PasswordResetToken);
 
             return Ok(new { mensagem = "Link de recuperação enviado com sucesso." });
@@ -172,21 +170,18 @@ namespace MatrizApi.Controllers
         [HttpPost("reset-password")]
         public IActionResult ResetPassword([FromBody] ResetPasswordRequest request)
         {
-            // Busca o usuário pelo token e verifica se não expirou
             var user = _context.Usuarios.FirstOrDefault(u =>
                 u.PasswordResetToken == request.Token && u.ResetTokenExpires > DateTime.UtcNow);
 
             if (user == null)
                 return BadRequest(new { mensagem = "Token inválido ou expirado." });
 
-            // Já que você usa BCrypt no registro, TEMOS que usar aqui também!
             user.Senha = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
 
-            // Limpa o token
             user.PasswordResetToken = null;
             user.ResetTokenExpires = null;
 
-            _context.SaveChanges(); // Síncrono
+            _context.SaveChanges(); 
 
             return Ok(new { mensagem = "Senha alterada com sucesso!" });
         }

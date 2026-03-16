@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MatrizApi
 {
-    // O DbContext é a ponte entre o seu código C# e o Banco de Dados SQL
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)

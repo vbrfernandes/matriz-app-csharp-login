@@ -97,7 +97,7 @@ class AuthController {
   }
 
   async bindVerificacao() {
-    // Garante que só roda na página "verificado"
+
     const statusTitle = document.getElementById("status-title");
     if (!statusTitle) return;
 
@@ -195,6 +195,6 @@ class AuthController {
   }
 }
 
-// Inicia o controller automaticamente quando o arquivo é importado
+
 const appController = new AuthController();
 appController.init();
