@@ -2,6 +2,7 @@
 export default class MatrixModel {
   constructor() {
     this.tarefas = [];
+    this.baseUrl = "https://matriz-app-csharp-login.onrender.com/api/Tarefa";
     this.carregarTarefasDoServidor();
   }
 
@@ -13,7 +14,7 @@ export default class MatrixModel {
     if (!usuarioId) return;
 
     // 2. Apontamos para a nova rota no C# passando o ID na URL
-    fetch(`https://localhost:7091/api/Tarefa/usuario/${usuarioId}`)
+    fetch(`${this.baseUrl}/usuario/${usuarioId}`)
       .then((resposta) => resposta.json())
       .then((dadosDoServidor) => {
         // Agora o C# e o JS falam exatamente a mesma língua!
@@ -55,7 +56,7 @@ export default class MatrixModel {
       usuarioId: parseInt(usuarioId), // Avisa o C# de quem é essa tarefa!
     };
 
-    fetch("https://localhost:7091/api/Tarefa", {
+    fetch(this.baseUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(tarefaParaOBackend),
@@ -78,7 +79,7 @@ export default class MatrixModel {
   deleteTask(id) {
     this.tarefas = this.tarefas.filter((t) => t.id !== id);
 
-    fetch(`https://localhost:7091/api/Tarefa/${id}`, {
+    fetch(`${this.baseUrl}/${id}`, {
       method: "DELETE",
     })
       .then(() => console.log(`🗑️ SUCESSO! C# deletou a tarefa ${id}`))
@@ -103,7 +104,7 @@ export default class MatrixModel {
       quadrante: tarefaAtual.quadrante,
     };
 
-    fetch(`https://localhost:7091/api/Tarefa/${id}`, {
+    fetch(`${this.baseUrl}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(tarefaEditada),

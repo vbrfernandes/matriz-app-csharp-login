@@ -1,6 +1,6 @@
 export default class AuthModel {
   constructor() {
-    this.baseUrl = "https://localhost:7091/api/Auth";
+    this.baseUrl = "https://matriz-app-csharp-login.onrender.com/api/Auth";
   }
 
   getUsuarioNome() {
