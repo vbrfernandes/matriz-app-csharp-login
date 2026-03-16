@@ -86,13 +86,13 @@ namespace MatrizApi.Controllers
             string smtpUser = _configuration["Smtp:User"];
             string smtpPass = _configuration["Smtp:Pass"];
 
-            var client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
+            var client = new SmtpClient("smtp.gmail.com", 587)
             {
                 Credentials = new NetworkCredential(smtpUser, smtpPass),
                 EnableSsl = true
             };
 
-            string link = $"http://127.0.0.1:5500/pages/verificado.html?token={token}";
+            string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/verificado.html?token={token}";
 
             var corpoEmail = $@"
             <div style='font-family: ""Segoe UI"", Tahoma, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; border-radius: 10px;'>
@@ -117,7 +117,7 @@ namespace MatrizApi.Controllers
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("no-reply@teuprojeto.com"),
+                From = new MailAddress("vitorschoolinf@gmail.com"),
                 Subject = "Verifique sua conta no nosso App!",
                 Body = corpoEmail,
                 IsBodyHtml = true,
@@ -192,13 +192,13 @@ namespace MatrizApi.Controllers
             string smtpUser = _configuration["Smtp:User"];
             string smtpPass = _configuration["Smtp:Pass"];
 
-            var client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
+            var client = new SmtpClient("smtp.gmail.com", 587)
             {
                 Credentials = new NetworkCredential(smtpUser, smtpPass),
                 EnableSsl = true
             };
 
-            string link = $"http://127.0.0.1:5500/pages/redefinirSenha.html?token={token}";
+            string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/verificado.html?token={token}";
 
             var corpoEmail = $@"
             <div style='font-family: Arial, sans-serif; padding: 20px; text-align: center;'>
@@ -215,7 +215,7 @@ namespace MatrizApi.Controllers
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("no-reply@teuprojeto.com"),
+                From = new MailAddress("vitorschoolinf@gmail.com"),
                 Subject = "Redefinição de Senha - Matriz",
                 Body = corpoEmail,
                 IsBodyHtml = true,
