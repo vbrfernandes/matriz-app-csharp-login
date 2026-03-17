@@ -175,7 +175,7 @@ namespace MatrizApi.Controllers
         private async Task EnviarEmailRecuperacao(string emailDestino, string token)
         {
             string apiKey = _configuration["Brevo:ApiKey"] ?? "";
-            string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/redefinir-senha.html?token={token}";
+            string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/redefinirSenha.html?token={token}";
 
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("api-key", apiKey);
