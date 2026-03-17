@@ -1,487 +1,438 @@
 /* =========================================
-   Variáveis do Tema Claro (Padrão)
+   1. VARIÁVEIS & TOKENS (Design System)
    ========================================= */
 :root {
-    --bg-main: #f4f7f6;
-    --text-main: #333333;
-    --text-muted: #7f8c8d;
-    --bg-quadrant: #ffffff;
-    --bg-task: rgba(255, 255, 255, 0.9);
-    --task-border: rgba(0, 0, 0, 0.1);
-    --input-bg: #f9f9f9;
-    --btn-hover: #e0e0e0;
-    --scrollbar-thumb: #bdc3c7;
-    
-    --q1-color: #4caf50;
-    --q1-bg: #e8f5e9;
-    --q2-color: #2196f3;
-    --q2-bg: #e3f2fd;
-    --q3-color: #ff9800;
-    --q3-bg: #fff3e0;
-    --q4-color: #f44336;
-    --q4-bg: #ffebee;
+  /* Cores - Modo Claro (Padrão) */
+  --bg-color: #f8fafc;
+  --bg-gradient: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+  --surface: rgba(255, 255, 255, 0.7);
+  --surface-border: rgba(255, 255, 255, 0.5);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --danger: #ef4444;
+  
+  /* Cores Semânticas (Quadrantes) */
+  --q1-color: rgba(239, 68, 68, 0.1); /* Importante & Urgente */
+  --q2-color: rgba(59, 130, 246, 0.1); /* Importante & Não Urgente */
+  --q3-color: rgba(245, 158, 11, 0.1); /* Não Importante & Urgente */
+  --q4-color: rgba(100, 116, 139, 0.1); /* Não Importante & Não Urgente */
+
+  /* Tipografia Fluida (Min - Val - Max) */
+  --text-xs: clamp(0.75rem, 0.7vw + 0.6rem, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8vw + 0.7rem, 1rem);
+  --text-md: clamp(1rem, 1vw + 0.8rem, 1.125rem);
+  --text-lg: clamp(1.25rem, 1.5vw + 1rem, 1.5rem);
+  --text-xl: clamp(1.5rem, 2vw + 1.2rem, 2rem);
+
+  /* Efeitos */
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modo Escuro (Ativado via JS no body ou data-theme) */
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --surface: rgba(30, 41, 59, 0.7);
+  --surface-border: rgba(255, 255, 255, 0.1);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* =========================================
-   Variáveis do Tema Escuro
+   2. RESET & BASE
    ========================================= */
-body.dark-mode {
-    --bg-main: #121212;
-    --text-main: #e0e0e0;
-    --text-muted: #aaaaaa;
-    --bg-quadrant: #1e1e1e;
-    --bg-task: #2c2c2c;
-    --task-border: #444444;
-    --input-bg: #333333;
-    --btn-hover: #444444;
-    --scrollbar-thumb: #555555;
-    
-    --q1-bg: rgba(76, 175, 80, 0.1);
-    --q2-bg: rgba(33, 150, 243, 0.1);
-    --q3-bg: rgba(255, 152, 0, 0.1);
-    --q4-bg: rgba(244, 67, 54, 0.1);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* =========================================
-   Estilos Globais
-   ========================================= */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 80vh;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    flex-direction: column;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background-color: var(--bg-color);
+  /* Mesh gradient suave para o fundo */
+  background-image: 
+    radial-gradient(at 80% 0%, hsla(239, 84%, 87%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(333, 100%, 95%, 0.5) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  transition: var(--transition);
 }
 
-.site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    width: 100%;
-    box-sizing: border-box;
+a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+  
+  &:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+  }
+}
+
+/* =========================================
+   3. COMPONENTES GLOBAIS (Glassmorphism)
+   ========================================= */
+.quadrant, .login-container {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+  padding: 2rem;
 }
 
 .logo {
-    font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  
+  & h2, & h1 {
+    font-size: var(--text-xl);
     font-weight: 700;
-    color: #333333;
-    letter-spacing: -0.5px;
-}
-
-.logo h2 {
-    margin: 0;
-    font-size: 2.8rem;
-    font-weight: 900;
-    letter-spacing: -1.5px;
-    background: linear-gradient(45deg, #007bff, #20c997);
+    background: linear-gradient(135deg, var(--primary), #a855f7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.1));
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    padding: 8px 15px;
-    border-radius: 25px;
-    transition: background-color 0.2s ease;
-    border: 1px solid transparent;
-}
-
-.user-profile:hover {
-    background-color: #f9f9f9;
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-.user-icon {
-    width: 22px;
-    height: 22px;
-    color: #333333;
-}
-
-.user-name {
-    font-size: 0.95rem;
-    color: #333333;
-    font-weight: 600;
-}
-
-.logout-btn {
-    background: transparent;
-    color: var(--text-muted);
-    border: 1px solid var(--task-border);
-    padding: 5px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    margin-left: 10px;
-}
-
-.logout-btn:hover {
-    background: #e74c3c;
-    color: white;
-    border-color: #e74c3c;
-    transform: translateY(-1px);
-}
-
-.matrix-container {
-    width: 100%;
-    max-width: 1000px;
+  }
 }
 
 /* =========================================
-   Cabeçalho
-   ========================================= */
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.app-header h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #7f9ab5;
-    margin: 0;
-    letter-spacing: 0.5px;
-}
-
-#theme-toggle {
-    background: var(--bg-quadrant);
-    color: var(--text-main);
-    border: 1px solid var(--task-border);
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-#theme-toggle:hover {
-    background: var(--btn-hover);
-    transform: translateY(-1px);
-}
-
-/* =========================================
-   Grid da Matriz
-   ========================================= */
-.eisenhower-matrix {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-/* =========================================
-   Página de Login
+   4. TELAS DE AUTENTICAÇÃO (Login, Register...)
    ========================================= */
 .login-container {
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  animation: fadeIn 0.5s ease-out;
+
+  & .login-header {
     text-align: center;
+    margin-bottom: 2rem;
+
+    & h2 {
+      font-size: var(--text-lg);
+      margin-bottom: 0.5rem;
+    }
+
+    & .subtitle {
+      color: var(--text-muted);
+      font-size: var(--text-sm);
+    }
+  }
 }
 
-.login-header h2 {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-}
-
-.login-header .subtitle {
-    margin-bottom: 25px;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* Formulários & Inputs */
+.login-form, .input-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
 }
 
 .input-group-vertical {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    gap: 5px;
-}
+  gap: 0.5rem;
 
-.input-group-vertical label {
-    font-size: 0.9rem;
+  & label {
+    font-size: var(--text-sm);
     font-weight: 600;
     color: var(--text-main);
-}
-
-.input-group-vertical .task-input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 12px;
-}
-
-.login-btn {
-    background-color: var(--q2-color);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 12px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.login-btn:hover {
-    background-color: #1976d2;
-}
-
-.login-btn:active {
-    transform: scale(0.98);
-}
-
-.login-footer {
-    margin-top: 25px;
-    font-size: 0.9rem;
-    border-top: 1px solid var(--task-border);
-    padding-top: 15px;
-}
-
-.login-footer a {
-    color: var(--q2-color);
-    text-decoration: none;
-    font-weight: 600;
-    transition: text-decoration 0.2s;
-}
-
-.login-footer a:hover {
-    text-decoration: underline;
-}
-
-.register-text {
-    color: var(--text-muted);
-    margin-top: 10px;
-}
-
-#toast {
-    visibility: hidden;
-    min-width: 250px;
-    background-color: #28a745;
-    color: #fff;
-    text-align: center;
-    border-radius: 8px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1000;
-    left: 50%;
-    bottom: 30px;
-    transform: translateX(-50%);
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transition: opacity 0.5s, visibility 0.5s;
-}
-
-#toast.mostrar {
-    visibility: visible;
-    opacity: 1;
-}
-
-.input-error {
-  border: 2px solid #d93025;
-  outline: none;
-}
-
-@media (max-width: 600px) {
-    .main-nav {
-        display: none;
-    }
-    
-    .site-header {
-        padding: 15px 20px;
-    }
-    
-    .user-name {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .eisenhower-matrix {
-        grid-template-columns: 1fr; 
-    }
-}
-
-/* =========================================
-   Quadrantes
-   ========================================= */
-.quadrant {
-    background-color: var(--bg-quadrant);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    transition: background-color 0.3s ease;
-}
-
-.quadrant h3 { 
-    margin: 0 0 5px 0; 
-    font-size: 1.3rem; 
-}
-
-.subtitle { 
-    font-size: 0.85rem; 
-    color: var(--text-muted); 
-    margin: 0 0 15px 0; 
-    font-weight: 600; 
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.q1 { background-color: var(--q1-bg); border-top: 6px solid var(--q1-color); }
-.q1 .task-list li { border-left-color: var(--q1-color); }
-
-.q2 { background-color: var(--q2-bg); border-top: 6px solid var(--q2-color); }
-.q2 .task-list li { border-left-color: var(--q2-color); }
-
-.q3 { background-color: var(--q3-bg); border-top: 6px solid var(--q3-color); }
-.q3 .task-list li { border-left-color: var(--q3-color); }
-
-.q4 { background-color: var(--q4-bg); border-top: 6px solid var(--q4-color); }
-.q4 .task-list li { border-left-color: var(--q4-color); }
-
-/* =========================================
-   Inputs e Botões
-   ========================================= */
-.input-group {
-    display: flex;
-    margin-bottom: 15px;
-    gap: 8px;
+  }
 }
 
 .task-input {
-    flex-grow: 1;
-    padding: 10px 12px;
-    border: 1px solid var(--task-border);
-    border-radius: 6px;
-    background: var(--input-bg);
-    color: var(--text-main);
-    outline: none;
-    font-size: 0.95rem;
-    transition: border-color 0.2s ease;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  transition: var(--transition);
+  outline: none;
+
+  [data-theme="dark"] & {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  &:focus-visible {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    background: var(--bg-color);
+  }
 }
 
-.task-input:focus {
-    border-color: var(--text-muted);
+/* Botões */
+.login-btn, .add-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.875rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--text-md);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  & a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
 }
 
-.add-btn {
-    background: var(--task-border);
-    color: var(--text-main);
-    border: none;
-    border-radius: 6px;
-    padding: 0 15px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.add-btn:hover { 
-    background: var(--btn-hover); 
-}
-
-.add-btn:active {
-    transform: scale(0.95);
+.login-footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: var(--text-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 /* =========================================
-   Lista de Tarefas
+   5. APLICAÇÃO (Matriz de Eisenhower)
    ========================================= */
-.task-list {
-    list-style-type: none;
-    padding: 0;
+.site-header {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  & .logo h2 {
+    font-size: var(--text-lg);
     margin: 0;
-    overflow-y: auto;
-    max-height: 220px;
-    padding-right: 5px;
+  }
 }
 
-.task-list::-webkit-scrollbar {
-    width: 6px;
-}
-.task-list::-webkit-scrollbar-track {
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: 1px solid var(--surface-border);
+
+  & .user-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--text-muted);
+  }
+
+  & .logout-btn {
     background: transparent;
-}
-.task-list::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-thumb);
-    border-radius: 10px;
+    border: none;
+    color: var(--danger);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: var(--text-sm);
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-.task-list li {
-    background: var(--bg-task);
-    padding: 10px 12px;
-    margin-bottom: 8px;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    border-left: 4px solid transparent;
-    border-bottom: 1px solid var(--task-border);
+.matrix-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  & h2 {
+    font-size: var(--text-lg);
+  }
+
+  & #theme-toggle {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    color: var(--text-main);
+    font-weight: 600;
+    transition: var(--transition);
+
+    &:hover {
+      background: var(--surface-border);
+    }
+  }
+}
+
+/* BENTO GRID - O Coração da Matriz */
+.eisenhower-matrix {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr; /* Mobile-first */
+
+  /* Breakpoint para Tablets e Desktop */
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Quadrantes Específicos */
+.quadrant {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  min-height: 300px;
+  
+  & h3 {
+    font-size: var(--text-md);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  & .subtitle {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Cores de Fundo Suaves para Identificação Visual */
+  &.q1 { background-color: var(--q1-color); }
+  &.q2 { background-color: var(--q2-color); }
+  &.q3 { background-color: var(--q3-color); }
+  &.q4 { background-color: var(--q4-color); }
+}
+
+/* Input Inline da Matriz */
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+
+  & .task-input {
+    flex: 1;
+  }
+
+  & .add-btn {
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+}
+
+/* Lista de Tarefas (Micro-interações) */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  max-height: 250px;
+
+  & li {
+    background: var(--bg-color);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-    transition: transform 0.2s ease;
+    border: 1px solid var(--surface-border);
+    font-size: var(--text-sm);
+    transition: var(--transition);
+    cursor: grab;
+
+    &:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow-glass);
+    }
+  }
 }
 
-.task-list li:hover {
-    transform: translateX(2px);
+/* =========================================
+   6. UTILITÁRIOS & ANIMAÇÕES
+   ========================================= */
+.hidden {
+  display: none !important;
 }
 
-.task-text {
-    flex-grow: 1;
-    cursor: text;
-    outline: none;
-    padding: 2px 5px;
-    border-radius: 4px;
-    transition: background 0.2s;
-    word-break: break-word;
-    margin-right: 10px;
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--surface-border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.5rem;
 }
 
-.task-text:focus { 
-    background: var(--input-bg); 
-    border-bottom: 1px dashed var(--text-muted); 
+/* Toast Notification (Acessível e animado) */
+#toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--text-main);
+  color: var(--bg-color);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: var(--text-sm);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000;
+  pointer-events: none;
+
+  &.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
 }
 
-.delete-btn {
-    background: transparent;
-    border: none;
-    color: #e74c3c;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-.delete-btn:hover { 
-    background: rgba(231, 76, 60, 0.1); 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
