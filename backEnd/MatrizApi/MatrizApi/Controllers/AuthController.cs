@@ -3,7 +3,9 @@ using MatrizApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using BCrypt.Net;
 using System.Net;
-using System.Net.Mail;
+using MimeKit;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 
 
 namespace MatrizApi.Controllers
@@ -86,15 +88,6 @@ namespace MatrizApi.Controllers
             string smtpUser = _configuration["Smtp:User"] ?? "";
             string smtpPass = _configuration["Smtp:Pass"] ?? "";
 
-            var client = new SmtpClient("smtp.gmail.com", 587)
-            {
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(smtpUser, smtpPass),
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                Timeout = 20000
-            };
-
             string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/verificado.html?token={token}";
 
             var corpoEmail = $@"
@@ -118,16 +111,22 @@ namespace MatrizApi.Controllers
                 </div>
             </div>";
 
-            var mailMessage = new MailMessage
-            {
-                From = new MailAddress("vitorschoolinf@gmail.com"),
-                Subject = "Verifique sua conta no nosso App!",
-                Body = corpoEmail,
-                IsBodyHtml = true,
-            };
+            var mensagem = new MimeMessage();
+            mensagem.From.Add(new MailboxAddress("Matriz App", "vitorschoolinf@gmail.com"));
+            mensagem.To.Add(new MailboxAddress("", emailDestino));
+            mensagem.Subject = "Verifique sua conta no nosso App!";
 
-            mailMessage.To.Add(emailDestino);
-            client.Send(mailMessage);
+            var bodyBuilder = new BodyBuilder { HtmlBody = corpoEmail };
+            mensagem.Body = bodyBuilder.ToMessageBody();
+
+            using (var client = new SmtpClient())
+            {
+                // Conecta de forma segura usando o StartTls (Ideal para Gmail)
+                client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                client.Authenticate(smtpUser, smtpPass);
+                client.Send(mensagem);
+                client.Disconnect(true);
+            }
         }
 
         // 5. REENVIAR E-MAIL DE VERIFICAÇÃO
@@ -195,15 +194,6 @@ namespace MatrizApi.Controllers
             string smtpUser = _configuration["Smtp:User"] ?? "";
             string smtpPass = _configuration["Smtp:Pass"] ?? "";
 
-            var client = new SmtpClient("smtp.gmail.com", 587)
-            {
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(smtpUser, smtpPass),
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                Timeout = 20000
-            };
-
             string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/verificado.html?token={token}";
 
             var corpoEmail = $@"
@@ -219,16 +209,21 @@ namespace MatrizApi.Controllers
                 <p style='font-size: 12px; color: #777;'>Se você não solicitou isso, ignore este e-mail.</p>
             </div>";
 
-            var mailMessage = new MailMessage
-            {
-                From = new MailAddress("vitorschoolinf@gmail.com"),
-                Subject = "Redefinição de Senha - Matriz",
-                Body = corpoEmail,
-                IsBodyHtml = true,
-            };
+            var mensagem = new MimeMessage();
+            mensagem.From.Add(new MailboxAddress("Matriz App", "vitorschoolinf@gmail.com"));
+            mensagem.To.Add(new MailboxAddress("", emailDestino));
+            mensagem.Subject = "Redefinição de Senha - Matriz";
 
-            mailMessage.To.Add(emailDestino);
-            client.Send(mailMessage);
+            var bodyBuilder = new BodyBuilder { HtmlBody = corpoEmail };
+            mensagem.Body = bodyBuilder.ToMessageBody();
+
+            using (var client = new SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                client.Authenticate(smtpUser, smtpPass);
+                client.Send(mensagem);
+                client.Disconnect(true);
+            }
         }
     }
     
