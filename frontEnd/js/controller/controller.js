@@ -27,6 +27,26 @@ class MatrixController {
         : "🌙 Modo Escuro";
     });
 
+    const updateBtnText = (isDark) => {
+        themeToggleBtn.textContent = isDark ? "☀️ Modo Claro" : "🌙 Modo Escuro";
+    };
+
+    themeToggleBtn.addEventListener("click", () => {
+        // Verifica se o tema atual é dark
+        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        if (isDark) {
+            // Muda para claro
+            document.documentElement.removeAttribute("data-theme");
+            updateBtnText(false);
+            localStorage.setItem("theme", "light");
+        } else {
+            // Muda para escuro
+            document.documentElement.setAttribute("data-theme", "dark");
+            updateBtnText(true);
+            localStorage.setItem("theme", "dark");
+        }
+    });
+
     const quadrantes = document.querySelectorAll(".quadrant");
 
     quadrantes.forEach((quadrante) => {

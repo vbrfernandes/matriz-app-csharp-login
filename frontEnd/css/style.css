@@ -35,6 +35,7 @@
 }
 
 /* Modo Escuro (Ativado via JS no body ou data-theme) */
+/* No seu seletor de modo escuro, adicione a mudança de background-image */
 [data-theme="dark"] {
   --bg-color: #0f172a;
   --surface: rgba(30, 41, 59, 0.7);
@@ -42,6 +43,15 @@
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Garanta que o body use a variável --bg-color corretamente */
+[data-theme="dark"] body {
+  background-color: var(--bg-color);
+  /* Remove ou altera o gradiente claro para um mais escuro */
+  background-image: 
+    radial-gradient(at 80% 0%, hsla(239, 40%, 10%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(333, 40%, 10%, 0.5) 0px, transparent 50%);
 }
 
 /* =========================================
