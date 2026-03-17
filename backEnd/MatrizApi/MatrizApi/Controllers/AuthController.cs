@@ -88,8 +88,11 @@ namespace MatrizApi.Controllers
 
             var client = new SmtpClient("smtp.gmail.com", 587)
             {
+                UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(smtpUser, smtpPass),
-                EnableSsl = true
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Timeout = 20000
             };
 
             string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/verificado.html?token={token}";
@@ -194,8 +197,11 @@ namespace MatrizApi.Controllers
 
             var client = new SmtpClient("smtp.gmail.com", 587)
             {
+                UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(smtpUser, smtpPass),
-                EnableSsl = true
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Timeout = 20000
             };
 
             string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/verificado.html?token={token}";
