@@ -82,34 +82,24 @@ namespace MatrizApi.Controllers
         // 4. ENVIAR E-MAIL
         private async Task EnviarEmailVerificacao(string emailDestino, string token)
         {
-            string apiKey = _configuration["Brevo:ApiKey"] ?? "";
             string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/verificado.html?token={token}";
 
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("api-key", apiKey);
+            string html = $@"
+    <div style='font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>
+        <div style='background-color: #4F46E5; padding: 20px; text-align: center;'>
+            <h1 style='color: white; margin: 0; font-size: 24px;'>Bem-vindo ao Matriz!</h1>
+        </div>
+        <div style='padding: 30px; color: #333; line-height: 1.6;'>
+            <p style='font-size: 16px;'>Olá!</p>
+            <p>Ficamos felizes em ter você conosco. Para começar a explorar nossa plataforma, precisamos apenas que confirme seu endereço de e-mail.</p>
+            <div style='text-align: center; margin: 30px 0;'>
+                <a href='{link}' style='background-color: #4F46E5; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>Verificar Minha Conta</a>
+            </div>
+            <p style='font-size: 12px; color: #666;'>Se o botão não funcionar, copie: {link}</p>
+        </div>
+    </div>";
 
-            var payload = new
-            {
-                sender = new { name = "Matriz App", email = "vitorschoolinf@gmail.com" },
-                to = new[] { new { email = emailDestino } },
-                subject = "Verifique sua conta no Matriz!",
-                htmlContent = $@"
-            <html>
-                <body>
-                    <h1>Bem-vindo ao Matriz!</h1>
-                    <p>Clique no link para verificar sua conta:</p>
-                    <a href='{link}'>Verificar Minha Conta</a>
-                </body>
-            </html>"
-            };
-
-            var response = await client.PostAsJsonAsync("https://api.brevo.com/v3/smtp/email", payload);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                var erro = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Erro ao enviar e-mail: {erro}");
-            }
+            await EnviarEmailGenerico(emailDestino, "Verifique sua conta no Matriz!", html);
         }
 
         // 5. REENVIAR E-MAIL DE VERIFICAÇÃO
@@ -174,9 +164,28 @@ namespace MatrizApi.Controllers
         // 8. MÉTODO AUXILIAR PARA O E-MAIL DE RECUPERAÇÃO
         private async Task EnviarEmailRecuperacao(string emailDestino, string token)
         {
-            string apiKey = _configuration["Brevo:ApiKey"] ?? "";
             string link = $"https://vbrfernandes.github.io/matriz-app-csharp-login/pages/redefinirSenha.html?token={token}";
 
+            string html = $@"
+    <div style='font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>
+        <div style='background-color: #1f2937; padding: 20px; text-align: center;'>
+            <h1 style='color: white; margin: 0; font-size: 24px;'>Recuperação de Senha</h1>
+        </div>
+        <div style='padding: 30px; color: #333; line-height: 1.6;'>
+            <p>Você solicitou a redefinição de senha para sua conta.</p>
+            <div style='text-align: center; margin: 30px 0;'>
+                <a href='{link}' style='background-color: #1f2937; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>Redefinir Minha Senha</a>
+            </div>
+            <p style='font-size: 14px; color: #ef4444;'>Se não foi você, ignore este e-mail.</p>
+        </div>
+    </div>";
+
+            await EnviarEmailGenerico(emailDestino, "Recuperação de Senha - Matriz", html);
+        }
+
+        private async Task EnviarEmailGenerico(string emailDestino, string assunto, string htmlCorpo)
+        {
+            string apiKey = _configuration["Brevo:ApiKey"] ?? "";
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("api-key", apiKey);
 
@@ -184,11 +193,17 @@ namespace MatrizApi.Controllers
             {
                 sender = new { name = "Matriz App", email = "vitorschoolinf@gmail.com" },
                 to = new[] { new { email = emailDestino } },
-                subject = "Recuperação de Senha - Matriz",
-                htmlContent = $"<html><body><h1>Recuperação de Senha</h1><p>Você solicitou a troca de senha.</p><a href='{link}'>Redefinir Minha Senha</a><p>Se não foi você, ignore este e-mail.</p></body></html>"
+                subject = assunto,
+                htmlContent = htmlCorpo
             };
 
-            await client.PostAsJsonAsync("https://api.brevo.com/v3/smtp/email", payload);
+            var response = await client.PostAsJsonAsync("https://api.brevo.com/v3/smtp/email", payload);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var erro = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Erro ao enviar e-mail: {erro}");
+            }
         }
     }
     
@@ -199,4 +214,6 @@ namespace MatrizApi.Controllers
 
     public record ForgotPasswordRequest(string Email);
     public record ResetPasswordRequest(string Token, string NewPassword);
+
+    
 }
