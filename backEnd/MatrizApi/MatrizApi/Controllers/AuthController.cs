@@ -83,8 +83,8 @@ namespace MatrizApi.Controllers
         // 4. ENVIAR E-MAIL
         private void EnviarEmailVerificacao(string emailDestino, string token)
         {
-            string smtpUser = _configuration["Smtp:User"];
-            string smtpPass = _configuration["Smtp:Pass"];
+            string smtpUser = _configuration["Smtp:User"] ?? "";
+            string smtpPass = _configuration["Smtp:Pass"] ?? "";
 
             var client = new SmtpClient("smtp.gmail.com", 587)
             {
@@ -189,8 +189,8 @@ namespace MatrizApi.Controllers
         // 8. MÉTODO AUXILIAR PARA O E-MAIL DE RECUPERAÇÃO
         private void EnviarEmailRecuperacao(string emailDestino, string token)
         {
-            string smtpUser = _configuration["Smtp:User"];
-            string smtpPass = _configuration["Smtp:Pass"];
+            string smtpUser = _configuration["Smtp:User"] ?? "";
+            string smtpPass = _configuration["Smtp:Pass"] ?? "";
 
             var client = new SmtpClient("smtp.gmail.com", 587)
             {
