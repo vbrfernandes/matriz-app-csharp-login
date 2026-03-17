@@ -6,7 +6,6 @@ export default class AuthView {
     spanNome.textContent = nome;
 
     const logoutBtn = document.createElement("span");
-    logoutBtn.textContent = " (Sair)";
     logoutBtn.style.cursor = "pointer";
     logoutBtn.onclick = onLogout;
     spanNome.parentElement.appendChild(logoutBtn);
