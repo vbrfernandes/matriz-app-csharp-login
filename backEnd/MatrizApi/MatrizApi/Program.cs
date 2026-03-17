@@ -1,22 +1,19 @@
 using MatrizApi;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-
     options.ConfigureWarnings(w => w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning));
 });
-
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirTudo", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("https://vbrfernandes.github.io") 
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -26,9 +23,8 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.UseCors("PermitirTudo"); 
 
-
+app.UseCors("PermitirTudo");
 app.UseAuthorization();
 app.MapControllers();
 
